@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item type="color" name="header_row">#c853809b</item>
+    <item type="color" name="odd_row">#64a5c0bf</item>
+    <item type="color" name="even_row">#32a5c0bf</item>
+
+    <item type="color" name="black">#000000</item>
+
+</resources>
