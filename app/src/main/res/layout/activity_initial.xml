@@ -1,140 +1,157 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".InitialActivity">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:paddingLeft="@dimen/activity_horizontal_margin"
+	android:paddingRight="@dimen/activity_horizontal_margin"
+	android:paddingTop="@dimen/activity_vertical_margin"
+	android:paddingBottom="@dimen/activity_vertical_margin"
+	tools:context=".InitialActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center_horizontal">
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:gravity="center_horizontal">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total de preguntas:"
-                android:id="@+id/totalLabel"
-                android:textStyle="bold" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Total de preguntas:"
+				android:id="@+id/totalLabel"
+				android:textStyle="bold"/>
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/totalField" />
-        </LinearLayout>
+			<EditText
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:inputType="number"
+				android:ems="10"
+				android:id="@+id/totalField"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+		</LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Decremento/Fallo:"
-                android:id="@+id/decrementLabel"
-                android:textStyle="bold" />
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/decrementField" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Decremento/Fallo:"
+				android:id="@+id/decrementLabel"
+				android:textStyle="bold"/>
 
-        </LinearLayout>
+			<EditText
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:inputType="numberDecimal"
+				android:ems="10"
+				android:id="@+id/decrementField"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+		</LinearLayout>
+		
+		<RadioGroup
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:orientation="vertical"
+			android:id="@+id/optionsGroup">
 
-            <Switch
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/switchShow"
-                android:layout_weight="1"
-                android:checked="false"
-                android:textOff="Ver solo aprobado"
-                android:textOn="Ver todo"
-                android:layout_gravity="center" />
+			<RadioButton
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Ver todo"
+				android:id="@+id/optionAll"/>
 
-        </LinearLayout>
+			<RadioButton
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Ver solo aprobado"
+				android:id="@+id/optionOnlyPass"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CALCULAR"
-            android:id="@+id/calculateButton"
-            android:onClick="calculatePosibilities"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+			<RadioButton
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Ver aprobados"
+				android:id="@+id/optionPass"/>
 
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+		</RadioGroup>
+	
+		
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="CALCULAR"
+			android:id="@+id/calculateButton"
+			android:onClick="calculatePosibilities"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp"/>
 
-            <TableLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/resultsTable"
-                android:visibility="gone">
+		<ScrollView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/scrollView"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp">
 
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@color/header_row">
+			<TableLayout
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/resultsTable"
+				android:visibility="gone">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Respuestas"
-                        android:id="@+id/responsedHeader"
-                        android:layout_weight="1" />
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:background="@color/header_row">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Correctas"
-                        android:id="@+id/correctsHeader"
-                        android:layout_weight="1" />
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Respuestas"
+						android:id="@+id/responsedHeader"
+						android:layout_weight="1"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fallos"
-                        android:id="@+id/failsHeader"
-                        android:layout_weight="1" />
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Correctas"
+						android:id="@+id/correctsHeader"
+						android:layout_weight="1"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nota"
-                        android:id="@+id/notesHeader"
-                        android:layout_weight="1" />
-                </TableRow>
-            </TableLayout>
-        </ScrollView>
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Fallos"
+						android:id="@+id/failsHeader"
+						android:layout_weight="1"/>
 
-    </LinearLayout>
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Nota"
+						android:id="@+id/notesHeader"
+						android:layout_weight="1"/>
+
+				</TableRow>
+
+			</TableLayout>
+
+		</ScrollView>
+
+	</LinearLayout>
 
 </RelativeLayout>
+

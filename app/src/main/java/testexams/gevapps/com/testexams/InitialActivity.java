@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -21,14 +20,16 @@ import java.util.Set;
 
 import testexams.gevapps.com.testexams.textexams.gevapps.com.testexams.engine.Case;
 import testexams.gevapps.com.testexams.textexams.gevapps.com.testexams.engine.PointsCalculator;
-
+import testexams.gevapps.com.testexams.R;
+import android.widget.*;
+import testexams.gevapps.com.testexams.textexams.gevapps.com.testexams.engine.*;
 
 public class InitialActivity extends ActionBarActivity {
 
     private PointsCalculator calculator;
     private TableLayout resultsTable;
     private EditText totalField, decrementField;
-    private Switch switchShow;
+	private RadioGroup optionsGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class InitialActivity extends ActionBarActivity {
         totalField = (EditText) findViewById(R.id.totalField);
         decrementField = (EditText) findViewById(R.id.decrementField);
         resultsTable = (TableLayout) findViewById(R.id.resultsTable);
-        switchShow = (Switch) findViewById(R.id.switchShow);
+		optionsGroup = (RadioGroup) findViewById(R.id.optionsGroup);
     }
 
 
@@ -67,8 +68,21 @@ public class InitialActivity extends ActionBarActivity {
     public void calculatePosibilities(View view) {
         int total = Integer.parseInt(totalField.getText().toString());
         float decrement = Float.parseFloat(decrementField.getText().toString());
-
-            calculator = new PointsCalculator(total, decrement, switchShow.isChecked());
+		int idSelected = optionsGroup.getCheckedRadioButtonId();
+		ShowOption optionSelected = ShowOption.ONLYPASS;
+		
+			switch(idSelected) {
+				case R.id.optionAll: optionSelected = ShowOption.ALL;
+					break;
+				
+				case R.id.optionOnlyPass: optionSelected = ShowOption.ONLYPASS;
+					break;
+				
+				case R.id.optionPass: optionSelected = ShowOption.PASS;
+					break;
+			}
+		
+            calculator = new PointsCalculator(total, decrement, optionSelected);
 
         List<Case> posibilities = calculator.calculateResultsTable();
 

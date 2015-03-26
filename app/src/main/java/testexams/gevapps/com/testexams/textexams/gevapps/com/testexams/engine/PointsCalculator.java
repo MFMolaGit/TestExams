@@ -12,14 +12,14 @@ public class PointsCalculator {
 
     private int total;
     private float decrement;
-    private boolean showAll;
+    private ShowOption showOption;
 
     public PointsCalculator() {}
 
-    public PointsCalculator(final int total, final float decrement, final boolean showAll) {
+    public PointsCalculator(final int total, final float decrement, final ShowOption showOption) {
         this.total = total;
         this.decrement = decrement;
-        this.showAll = showAll;
+        this.showOption = showOption;
     }
 
     public List<Case> calculateResultsTable() {
@@ -39,14 +39,30 @@ public class PointsCalculator {
                 float finalNote = positiveNote - negativeNote;
                 int responses = numCorrects + numFails;
 
-                if(showAll) {
-                    if (responses <= total) {
-                        cases.add(new Case(numCorrects, numFails, finalNote, responses));
-                    }
-                } else {
-                    if (finalNote == 5 && responses <= total) {
-                        cases.add(new Case(numCorrects, numFails, finalNote, responses));
-                    }
+				boolean addResult = false;
+				
+				switch(showOption) {
+					case ALL:
+						if (responses <= total) {
+							addResult = true;
+						}
+						break;
+					
+					case ONLYPASS:
+						if (finalNote == 5 && responses <= total) {
+							addResult = true;
+						}
+						break;
+						
+					case PASS:
+						if (finalNote >= 5 && responses <= total) {
+							addResult = true;
+						}
+						break;	
+				}
+				
+                if (addResult) {
+                   cases.add(new Case(numCorrects, numFails, finalNote, responses));
                 }
             }
         }
